@@ -14,9 +14,14 @@
 - **[BACKEND_QUICKSTART.md](./BACKEND_QUICKSTART.md)** - Backend-specific setup and development guide
 
 #### Phase 1 Status & Architecture
-- **[PHASE1_COMPLETE.md](./PHASE1_COMPLETE.md)** - Phase 1 completion summary and deliverables
+- **[PHASE1_COMPLETE.md](./PHASE1_COMPLETE.md)** - Phase 1 completion summary and deliverables ✅
 - **[TECH_STACK_CONSENSUS.md](./TECH_STACK_CONSENSUS.md)** - Final tech stack decisions (Next.js 15, FastAPI, LiteLLM)
 - **[quorum-prd.md](./quorum-prd.md)** - Product Requirements Document (full vision, all phases)
+
+#### Phase 2 Status & Integration
+- **[PHASE2_STATUS.md](./PHASE2_STATUS.md)** - Phase 2 implementation status and next steps ⚠️
+- **[phase2-integration/integration-checklist.md](./phase2-integration/integration-checklist.md)** - Detailed integration checklist
+- **[phase2-integration/integration-issues.md](./phase2-integration/integration-issues.md)** - Identified issues and resolution paths
 
 #### Current Implementation Specs
 - **[api-integration-spec.md](./api-integration-spec.md)** - API endpoint specifications and integration details
@@ -77,12 +82,17 @@
 - shadcn/ui components
 - Docker Compose deployment
 
-### 🔄 Phase 2: Multi-LLM Debate Engine (Next)
+### ⚠️ Phase 2: Multi-LLM Debate Engine (Planned - Not Yet Implemented)
+**Status:** Planning complete, implementation 0% complete. See [PHASE2_STATUS.md](./PHASE2_STATUS.md) for details.
+
+**Planned Features:**
 - Multi-provider support (Anthropic, OpenAI, Google, Mistral)
 - XState debate state machine
 - Parallel streaming (2-4 debaters)
 - Context management
 - Token counting and cost tracking
+
+**Estimated Effort:** 4-6 weeks of development work
 
 ### 📋 Phase 3: Judge & Features
 - Judge agent with structured output

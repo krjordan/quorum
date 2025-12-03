@@ -5,6 +5,7 @@ python-multipart==0.0.17
 
 # LLM Integration
 litellm==1.51.3
+tiktoken==0.8.0
 
 # Data Validation and Settings
 pydantic==2.9.2

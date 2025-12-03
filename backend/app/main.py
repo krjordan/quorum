@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 from app.config.settings import settings
-from app.api.routes import chat, health
+from app.api.routes import chat, health, debate
 
 
 @asynccontextmanager
@@ -15,6 +15,12 @@ async def lifespan(app: FastAPI):
         print("✅ OpenAI API key configured")
     if settings.anthropic_api_key:
         print("✅ Anthropic API key configured")
+    if settings.google_api_key:
+        print("✅ Google API key configured")
+    if settings.mistral_api_key:
+        print("✅ Mistral API key configured")
+
+    print("🎭 Multi-LLM Debate Engine initialized")
 
     yield
     print("👋 Shutting down")
@@ -22,8 +28,8 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(
     title=settings.app_name,
-    description="Backend API for Quorum AI Debate Platform",
-    version="0.1.0",
+    description="Backend API for Quorum AI Debate Platform with Multi-LLM Debate Orchestration",
+    version="0.2.0",
     lifespan=lifespan,
 )
 
@@ -37,6 +43,7 @@ app.add_middleware(
 
 app.include_router(health.router, tags=["Health"])
 app.include_router(chat.router, prefix="/api/v1/chat", tags=["Chat"])
+app.include_router(debate.router, prefix="/api/v1", tags=["Debates"])
 
 
 if __name__ == "__main__":

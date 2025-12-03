@@ -28,3 +28,10 @@ class ErrorResponse(BaseModel):
     """Error response"""
     detail: str
     error_code: Optional[str] = None
+
+
+class SuccessResponse(BaseModel):
+    """Success response"""
+    success: bool = True
+    message: str
+    data: Optional[dict] = None
