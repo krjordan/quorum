@@ -1,5 +1,5 @@
 import asyncio
-from typing import AsyncGenerator, List, Dict, Any
+from typing import AsyncGenerator, List, Dict, Any, Optional
 import litellm
 from litellm import acompletion
 from app.config.settings import settings
@@ -16,7 +16,7 @@ class LLMService:
     async def stream_completion(
         self,
         messages: List[Dict[str, str]],
-        model: str | None = None,
+        model: Optional[str] = None,
     ) -> AsyncGenerator[str, None]:
         model_to_use = model or self.default_model
 
@@ -41,7 +41,7 @@ class LLMService:
     async def get_completion(
         self,
         messages: List[Dict[str, str]],
-        model: str | None = None,
+        model: Optional[str] = None,
     ) -> str:
         model_to_use = model or self.default_model
 

@@ -1,0 +1,398 @@
+/**
+ * Debate State Machine (XState v5)
+ * Sequential turn-based multi-LLM debate orchestration
+ * Phase 2 implementation without AI judge
+ */
+import { setup, assign, fromPromise } from 'xstate';
+
+// ===== Types =====
+
+export interface ParticipantConfig {
+  name: string;
+  model: string;
+  system_prompt: string;
+  temperature?: number;
+}
+
+export interface DebateConfig {
+  topic: string;
+  participants: ParticipantConfig[];
+  max_rounds: number;
+  context_window_rounds?: number;
+  cost_warning_threshold?: number;
+}
+
+export interface ParticipantResponse {
+  participant_name: string;
+  participant_index: number;
+  model: string;
+  content: string;
+  tokens_used: number;
+  response_time_ms: number;
+  timestamp: string;
+}
+
+export interface DebateRound {
+  round_number: number;
+  responses: ParticipantResponse[];
+  tokens_used: Record<string, number>;
+  cost_estimate: number;
+  timestamp: string;
+}
+
+export interface CostData {
+  total_cost: number;
+  round_cost: number;
+  total_tokens: Record<string, number>;
+  warning_threshold: number;
+}
+
+// ===== Context =====
+
+export interface DebateMachineContext {
+  // Configuration
+  config: DebateConfig | null;
+
+  // Debate state
+  debateId: string | null;
+  currentRound: number;
+  currentTurn: number;
+
+  // Streaming state
+  isStreaming: boolean;
+  currentParticipantName: string | null;
+  accumulatedText: string;
+
+  // Debate data
+  rounds: DebateRound[];
+
+  // Cost tracking
+  totalCost: number;
+  totalTokens: Record<string, number>;
+
+  // Errors
+  error: string | null;
+}
+
+// ===== Events =====
+
+export type DebateMachineEvent =
+  | { type: 'SET_CONFIG'; config: DebateConfig }
+  | { type: 'START_DEBATE' }
+  | { type: 'NEXT_TURN' }
+  | { type: 'PAUSE' }
+  | { type: 'RESUME' }
+  | { type: 'STOP' }
+  | { type: 'STREAM_START'; participantName: string }
+  | { type: 'STREAM_CHUNK'; text: string }
+  | { type: 'STREAM_COMPLETE'; response: ParticipantResponse }
+  | { type: 'ROUND_COMPLETE'; roundNumber: number }
+  | { type: 'COST_UPDATE'; costData: CostData }
+  | { type: 'ERROR'; error: string }
+  | { type: 'DEBATE_COMPLETE' };
+
+// ===== Guards =====
+
+const canStartDebate = ({ context }: { context: DebateMachineContext }) => {
+  if (!context.config) return false;
+
+  const { topic, participants, max_rounds } = context.config;
+
+  return (
+    topic.trim().length > 0 &&
+    participants.length >= 2 &&
+    participants.length <= 4 &&
+    max_rounds >= 1 &&
+    max_rounds <= 5 &&
+    participants.every(p => p.name.trim().length > 0 && p.model.trim().length > 0)
+  );
+};
+
+const hasMoreTurns = ({ context }: { context: DebateMachineContext }) => {
+  if (!context.config) return false;
+
+  // Check if there are more participants in this round
+  return context.currentTurn < context.config.participants.length;
+};
+
+const hasMoreRounds = ({ context }: { context: DebateMachineContext }) => {
+  if (!context.config) return false;
+
+  // Check if there are more rounds to complete
+  return context.currentRound < context.config.max_rounds;
+};
+
+// ===== Actions =====
+
+const setConfig = assign({
+  config: ({ event }) => {
+    if (event.type !== 'SET_CONFIG') return null;
+    return event.config;
+  },
+  error: () => null,
+});
+
+const initializeDebate = assign({
+  debateId: () => `debate_${Date.now()}`,
+  currentRound: () => 1,
+  currentTurn: () => 0,
+  rounds: () => [],
+  totalCost: () => 0,
+  totalTokens: () => ({}),
+  error: () => null,
+});
+
+const startStreaming = assign({
+  isStreaming: () => true,
+  accumulatedText: () => '',
+  currentParticipantName: ({ event }) => {
+    if (event.type !== 'STREAM_START') return null;
+    return event.participantName;
+  },
+});
+
+const appendChunk = assign({
+  accumulatedText: ({ context, event }) => {
+    if (event.type !== 'STREAM_CHUNK') return context.accumulatedText;
+    return context.accumulatedText + event.text;
+  },
+});
+
+const completeParticipantResponse = assign(({ context, event }) => {
+  if (event.type !== 'STREAM_COMPLETE') return context;
+
+  const response = event.response;
+
+  // Get or create current round
+  let currentRoundObj = context.rounds[context.currentRound - 1];
+  if (!currentRoundObj) {
+    currentRoundObj = {
+      round_number: context.currentRound,
+      responses: [],
+      tokens_used: {},
+      cost_estimate: 0,
+      timestamp: new Date().toISOString(),
+    };
+  }
+
+  // Add response to round
+  const updatedRound = {
+    ...currentRoundObj,
+    responses: [...currentRoundObj.responses, response],
+  };
+
+  // Update rounds array
+  const updatedRounds = [...context.rounds];
+  updatedRounds[context.currentRound - 1] = updatedRound;
+
+  return {
+    rounds: updatedRounds,
+    isStreaming: false,
+    accumulatedText: '',
+    currentParticipantName: null,
+  };
+});
+
+const advanceTurn = assign(({ context }) => {
+  const nextTurn = context.currentTurn + 1;
+
+  // If we've gone through all participants, move to next round
+  if (context.config && nextTurn >= context.config.participants.length) {
+    return {
+      currentTurn: 0,
+      currentRound: context.currentRound + 1,
+    };
+  }
+
+  return {
+    currentTurn: nextTurn,
+  };
+});
+
+const completeRound = assign(({ context, event }) => {
+  if (event.type !== 'ROUND_COMPLETE') return context;
+
+  // Round completion is already handled by advanceTurn
+  // This is mainly for logging/debugging
+  return context;
+});
+
+const updateCosts = assign(({ context, event }) => {
+  if (event.type !== 'COST_UPDATE') return context;
+
+  const { total_cost, total_tokens } = event.costData;
+
+  return {
+    totalCost: total_cost,
+    totalTokens: total_tokens,
+  };
+});
+
+const setError = assign({
+  error: ({ event }) => {
+    if (event.type !== 'ERROR') return null;
+    return event.error;
+  },
+  isStreaming: () => false,
+});
+
+const clearError = assign({
+  error: () => null,
+});
+
+// ===== State Machine =====
+
+export const debateMachine = setup({
+  types: {
+    context: {} as DebateMachineContext,
+    events: {} as DebateMachineEvent,
+  },
+  guards: {
+    canStartDebate,
+    hasMoreTurns,
+    hasMoreRounds,
+  },
+  actions: {
+    setConfig,
+    initializeDebate,
+    startStreaming,
+    appendChunk,
+    completeParticipantResponse,
+    advanceTurn,
+    completeRound,
+    updateCosts,
+    setError,
+    clearError,
+  },
+}).createMachine({
+  id: 'debate',
+  initial: 'configuring',
+  context: {
+    config: null,
+    debateId: null,
+    currentRound: 1,
+    currentTurn: 0,
+    isStreaming: false,
+    currentParticipantName: null,
+    accumulatedText: '',
+    rounds: [],
+    totalCost: 0,
+    totalTokens: {},
+    error: null,
+  },
+  states: {
+    configuring: {
+      on: {
+        SET_CONFIG: {
+          actions: 'setConfig',
+        },
+        START_DEBATE: {
+          guard: 'canStartDebate',
+          target: 'ready',
+          actions: 'initializeDebate',
+        },
+      },
+    },
+    ready: {
+      entry: 'clearError',
+      on: {
+        NEXT_TURN: {
+          target: 'running',
+        },
+        SET_CONFIG: {
+          target: 'configuring',
+          actions: 'setConfig',
+        },
+      },
+    },
+    running: {
+      entry: 'clearError',
+      on: {
+        STREAM_START: {
+          actions: 'startStreaming',
+        },
+        STREAM_CHUNK: {
+          actions: 'appendChunk',
+        },
+        STREAM_COMPLETE: {
+          actions: ['completeParticipantResponse', 'advanceTurn'],
+          target: 'checkingProgress',
+        },
+        COST_UPDATE: {
+          actions: 'updateCosts',
+        },
+        PAUSE: {
+          target: 'paused',
+        },
+        STOP: {
+          target: 'completed',
+        },
+        ERROR: {
+          target: 'error',
+          actions: 'setError',
+        },
+      },
+    },
+    checkingProgress: {
+      always: [
+        {
+          guard: ({ context }) => {
+            if (!context.config) return false;
+            // Check if round is complete and no more rounds
+            return (
+              context.currentTurn === 0 &&
+              context.currentRound > context.config.max_rounds
+            );
+          },
+          target: 'completed',
+        },
+        {
+          guard: ({ context }) => {
+            // Check if round is complete but more rounds remain
+            return context.currentTurn === 0;
+          },
+          target: 'ready',
+        },
+        {
+          // More turns in current round
+          target: 'ready',
+        },
+      ],
+    },
+    paused: {
+      on: {
+        RESUME: {
+          target: 'ready',
+        },
+        STOP: {
+          target: 'completed',
+        },
+        SET_CONFIG: {
+          target: 'configuring',
+          actions: 'setConfig',
+        },
+      },
+    },
+    completed: {
+      entry: 'clearError',
+      type: 'final',
+    },
+    error: {
+      on: {
+        NEXT_TURN: {
+          target: 'running',
+          actions: 'clearError',
+        },
+        SET_CONFIG: {
+          target: 'configuring',
+          actions: ['setConfig', 'clearError'],
+        },
+        STOP: {
+          target: 'completed',
+        },
+      },
+    },
+  },
+});
+
+export type DebateMachine = typeof debateMachine;
