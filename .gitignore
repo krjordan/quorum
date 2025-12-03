@@ -38,8 +38,10 @@ Thumbs.db
 data/*.db
 *.db-journal
 *.db-wal
+*.db-shm
 *.sqlite-journal
 *.sqlite-wal
+*.sqlite-shm
 
 # Logs
 *.log
