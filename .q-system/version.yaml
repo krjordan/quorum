@@ -4,7 +4,7 @@
 
 q_system:
   version: "2.1.1"
-  installed: "YYYY-MM-DDTHH:MM:SSZ"  # Set during installation
+  installed: "2025-12-03T05:44:55Z"
   source: "github.com/contactTAM/q-command-system"
   branch: "main"
 

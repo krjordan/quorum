@@ -9,7 +9,7 @@ Edit this file to customize Q-System behavior for your project.
 Used for session file naming: `YYYY-MM-DD-HHmm-[name].md`
 
 ```
-user_name: YourName
+user_name: krjordan
 ```
 
 ---
@@ -44,7 +44,7 @@ friction_prompt: yes
 Automatically save checkpoint after N minutes of work? (0 = disabled)
 
 ```
-auto_checkpoint_minutes: 0
+auto_checkpoint_minutes: 30
 ```
 
 ---
