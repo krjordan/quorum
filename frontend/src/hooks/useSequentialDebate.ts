@@ -20,10 +20,19 @@ interface SequentialTurnEvent {
 
 export function useSequentialDebate() {
   const machine = useDebateMachine();
-  const { send, context, isRunning, isReady, isPaused } = machine;
+  const { send, context, isRunning, isReady, isPaused, isCompleted, stateValue } = machine;
 
   const eventSourceRef = useRef<EventSource | null>(null);
   const debateIdRef = useRef<string | null>(null);
+
+  // Debug logging for state changes
+  console.log('[useSequentialDebate] State:', stateValue);
+  console.log('[useSequentialDebate] Context:', {
+    debateId: context.debateId,
+    currentRound: context.currentRound,
+    currentTurn: context.currentTurn,
+    isStreaming: context.isStreaming
+  });
 
   /**
    * Start a new debate
@@ -69,16 +78,20 @@ export function useSequentialDebate() {
    * Request next participant's turn via SSE
    */
   const requestNextTurn = useCallback((debateId: string) => {
+    console.log('[requestNextTurn] Called with debateId:', debateId);
     // Close existing connection if any
     if (eventSourceRef.current) {
+      console.log('[requestNextTurn] Closing existing SSE connection');
       eventSourceRef.current.close();
       eventSourceRef.current = null;
     }
 
     // Send NEXT_TURN event to machine
+    console.log('[requestNextTurn] Sending NEXT_TURN event to machine');
     send({ type: 'NEXT_TURN' });
 
     // Open SSE connection
+    console.log('[requestNextTurn] Opening new SSE connection');
     const eventSource = new EventSource(
       `${API_BASE}/api/v1/debates/v2/${debateId}/next-turn`
     );
@@ -86,18 +99,20 @@ export function useSequentialDebate() {
     eventSource.onmessage = (event) => {
       try {
         const turnEvent: SequentialTurnEvent = JSON.parse(event.data);
+        console.log('[SSE] Received event:', turnEvent.event_type, turnEvent);
 
         switch (turnEvent.event_type) {
           case 'debate_start':
             // Debate started
-            console.log('Debate started:', turnEvent.data);
+            console.log('[SSE] Debate started:', turnEvent.data);
             break;
 
           case 'round_start':
-            console.log('Round started:', turnEvent.round_number);
+            console.log('[SSE] Round started:', turnEvent.round_number);
             break;
 
           case 'participant_start':
+            console.log('[SSE] Participant start, sending STREAM_START');
             send({
               type: 'STREAM_START',
               participantName: turnEvent.data.participant_name,
@@ -112,6 +127,7 @@ export function useSequentialDebate() {
             break;
 
           case 'participant_complete':
+            console.log('[SSE] Participant complete, sending STREAM_COMPLETE');
             // Create ParticipantResponse object from context
             const response: ParticipantResponse = {
               participant_name: turnEvent.data.participant_name,
@@ -123,22 +139,18 @@ export function useSequentialDebate() {
               timestamp: turnEvent.timestamp,
             };
 
+            console.log('[SSE] Sending STREAM_COMPLETE event');
             send({
               type: 'STREAM_COMPLETE',
               response,
             });
 
             // Close this connection
+            console.log('[SSE] Closing SSE connection');
             eventSource.close();
             eventSourceRef.current = null;
 
-            // Check if we need to request next turn
-            setTimeout(() => {
-              // If machine is in ready state, request next turn
-              if (machine.isReady && !machine.isCompleted) {
-                requestNextTurn(debateId);
-              }
-            }, 100);
+            // Auto-advance is now handled by useEffect
             break;
 
           case 'round_complete':
@@ -289,6 +301,25 @@ export function useSequentialDebate() {
       return null;
     }
   }, []);
+
+  /**
+   * Auto-advance to next turn when in ready state
+   */
+  useEffect(() => {
+    console.log('[AUTO-ADVANCE] Effect triggered:', { isReady, hasDebateId: !!debateIdRef.current, isCompleted });
+    if (isReady && debateIdRef.current && !isCompleted) {
+      console.log('[AUTO-ADVANCE] Scheduling next turn request in 100ms');
+      // Small delay to ensure state has settled
+      const timer = setTimeout(() => {
+        console.log('[AUTO-ADVANCE] Requesting next turn now');
+        requestNextTurn(debateIdRef.current!);
+      }, 100);
+      return () => {
+        console.log('[AUTO-ADVANCE] Cleanup - clearing timer');
+        clearTimeout(timer);
+      };
+    }
+  }, [isReady, isCompleted, requestNextTurn]);
 
   /**
    * Cleanup on unmount
