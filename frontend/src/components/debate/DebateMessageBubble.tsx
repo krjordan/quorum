@@ -40,14 +40,14 @@ function DebateMessageBubbleComponent({ message }: DebateMessageBubbleProps) {
 
   const colorClass = AGENT_COLORS[participantIndex % AGENT_COLORS.length];
 
-  // Subtle alternating background colors for better separation
+  // Alternating background colors for better separation
   const bgClass = participantIndex % 2 === 0
-    ? 'bg-muted/20 hover:bg-muted/40'
-    : 'bg-muted/10 hover:bg-muted/30';
+    ? 'bg-muted/40 hover:bg-muted/60'
+    : 'bg-muted/20 hover:bg-muted/40';
 
   return (
     <div className={cn(
-      "group rounded-lg px-4 py-3 transition-colors border-b border-border/50",
+      "group px-4 py-3 transition-colors border-b border-border",
       bgClass
     )}>
       {/* Header */}
