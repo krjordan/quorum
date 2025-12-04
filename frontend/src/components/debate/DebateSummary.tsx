@@ -13,6 +13,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
@@ -107,6 +108,9 @@ export function DebateSummary({ debate, open, onOpenChange }: DebateSummaryProps
               </Badge>
             )}
           </DialogTitle>
+          <DialogDescription className="sr-only">
+            Debate summary showing statistics and full transcript
+          </DialogDescription>
         </DialogHeader>
 
         {!isCompleted ? (

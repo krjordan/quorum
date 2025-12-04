@@ -26,17 +26,22 @@ interface DebateConfigPanelV2Props {
   debate: UseSequentialDebateReturn;
 }
 
-// Available models (hardcoded for now)
+// Available models (only real, existing models)
 const AVAILABLE_MODELS = [
   { id: 'gpt-4o', name: 'GPT-4o', provider: 'OpenAI' },
   {
     id: 'claude-3-5-sonnet-20241022',
-    name: 'Claude 3.5 Sonnet',
+    name: 'Claude 3.5 Sonnet (Latest)',
     provider: 'Anthropic',
   },
   {
     id: 'claude-3-5-haiku-20241022',
     name: 'Claude 3.5 Haiku',
+    provider: 'Anthropic',
+  },
+  {
+    id: 'claude-3-opus-20240229',
+    name: 'Claude 3 Opus',
     provider: 'Anthropic',
   },
   { id: 'gemini-1.5-pro', name: 'Gemini 1.5 Pro', provider: 'Google' },

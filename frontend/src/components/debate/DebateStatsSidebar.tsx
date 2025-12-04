@@ -4,6 +4,7 @@
  */
 'use client';
 
+import { memo } from 'react';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -34,7 +35,7 @@ function getStateBadge(stateValue: string) {
   }
 }
 
-export function DebateStatsSidebar({ debate, onOpenSummary }: DebateStatsSidebarProps) {
+function DebateStatsSidebarComponent({ debate, onOpenSummary }: DebateStatsSidebarProps) {
   const {
     context,
     stateValue,
@@ -196,3 +197,23 @@ export function DebateStatsSidebar({ debate, onOpenSummary }: DebateStatsSidebar
     </div>
   );
 }
+
+// Memoize to prevent rerenders when debate object reference changes but values are same
+export const DebateStatsSidebar = memo(DebateStatsSidebarComponent, (prevProps, nextProps) => {
+  // Only rerender if these specific values change
+  const prev = prevProps.debate;
+  const next = nextProps.debate;
+
+  return (
+    prev.stateValue === next.stateValue &&
+    prev.context.currentRound === next.context.currentRound &&
+    prev.context.currentTurn === next.context.currentTurn &&
+    prev.context.totalCost === next.context.totalCost &&
+    JSON.stringify(prev.context.totalTokens) === JSON.stringify(next.context.totalTokens) &&
+    prev.context.rounds.length === next.context.rounds.length &&
+    prev.isRunning === next.isRunning &&
+    prev.isPaused === next.isPaused &&
+    prev.isCompleted === next.isCompleted &&
+    prevProps.onOpenSummary === nextProps.onOpenSummary
+  );
+});
