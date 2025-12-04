@@ -26,27 +26,27 @@ interface DebateConfigPanelV2Props {
   debate: UseSequentialDebateReturn;
 }
 
-// Available models - verified against LiteLLM docs (https://docs.litellm.ai/docs/providers/anthropic)
+// Available models - verified against Anthropic API docs (https://docs.anthropic.com/en/docs/about-claude/models)
 const AVAILABLE_MODELS = [
   { id: 'gpt-4o', name: 'GPT-4o', provider: 'OpenAI' },
   {
-    id: 'claude-3-5-sonnet-20240620',
-    name: 'Claude 3.5 Sonnet',
+    id: 'claude-3-5-sonnet-20241022',
+    name: 'Claude 3.5 Sonnet (Oct 2024)',
     provider: 'Anthropic',
   },
   {
-    id: 'claude-3-7-sonnet-20250219',
-    name: 'Claude 3.7 Sonnet',
-    provider: 'Anthropic',
-  },
-  {
-    id: 'claude-3-haiku-20240307',
-    name: 'Claude 3 Haiku (Fastest/Cheapest)',
+    id: 'claude-3-5-haiku-20241022',
+    name: 'Claude 3.5 Haiku',
     provider: 'Anthropic',
   },
   {
     id: 'claude-3-opus-20240229',
     name: 'Claude 3 Opus',
+    provider: 'Anthropic',
+  },
+  {
+    id: 'claude-3-haiku-20240307',
+    name: 'Claude 3 Haiku (Cheapest)',
     provider: 'Anthropic',
   },
   {
