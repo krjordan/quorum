@@ -24,6 +24,7 @@ export function useSequentialDebate() {
 
   const eventSourceRef = useRef<EventSource | null>(null);
   const debateIdRef = useRef<string | null>(null);
+  const accumulatedTextRef = useRef<string>('');
 
   // Debug logging for state changes
   console.log('[useSequentialDebate] State:', stateValue);
@@ -86,6 +87,9 @@ export function useSequentialDebate() {
       eventSourceRef.current = null;
     }
 
+    // Clear accumulated text for new turn
+    accumulatedTextRef.current = '';
+
     // Send NEXT_TURN event to machine
     console.log('[requestNextTurn] Sending NEXT_TURN event to machine');
     send({ type: 'NEXT_TURN' });
@@ -113,6 +117,8 @@ export function useSequentialDebate() {
 
           case 'participant_start':
             console.log('[SSE] Participant start, sending STREAM_START');
+            // Clear accumulated text for new participant
+            accumulatedTextRef.current = '';
             send({
               type: 'STREAM_START',
               participantName: turnEvent.data.participant_name,
@@ -120,6 +126,8 @@ export function useSequentialDebate() {
             break;
 
           case 'chunk':
+            // Accumulate text locally in ref
+            accumulatedTextRef.current += turnEvent.data.text;
             send({
               type: 'STREAM_CHUNK',
               text: turnEvent.data.text,
@@ -128,17 +136,20 @@ export function useSequentialDebate() {
 
           case 'participant_complete':
             console.log('[SSE] Participant complete, sending STREAM_COMPLETE');
-            // Create ParticipantResponse object from context
+            console.log('[SSE] accumulatedTextRef.current length:', accumulatedTextRef.current.length);
+            console.log('[SSE] accumulatedTextRef.current preview:', accumulatedTextRef.current.substring(0, 100));
+            // Create ParticipantResponse object using ref (fixes stale closure issue)
             const response: ParticipantResponse = {
               participant_name: turnEvent.data.participant_name,
               participant_index: turnEvent.turn_index,
               model: context.config?.participants[turnEvent.turn_index]?.model || '',
-              content: context.accumulatedText,
+              content: accumulatedTextRef.current, // Use ref instead of stale context
               tokens_used: turnEvent.data.tokens_used,
               response_time_ms: turnEvent.data.response_time_ms,
               timestamp: turnEvent.timestamp,
             };
 
+            console.log('[SSE] Created response object, content length:', response.content.length);
             console.log('[SSE] Sending STREAM_COMPLETE event');
             send({
               type: 'STREAM_COMPLETE',
@@ -169,7 +180,7 @@ export function useSequentialDebate() {
           case 'cost_update':
             send({
               type: 'COST_UPDATE',
-              costData: turnEvent.data,
+              costData: turnEvent.data as any,
             });
             break;
 

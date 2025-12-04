@@ -122,124 +122,6 @@ const hasMoreRounds = ({ context }: { context: DebateMachineContext }) => {
   return context.currentRound < context.config.max_rounds;
 };
 
-// ===== Actions =====
-
-const setConfig = assign({
-  config: ({ event }) => {
-    if (event.type !== 'SET_CONFIG') return null;
-    return event.config;
-  },
-  error: () => null,
-});
-
-const initializeDebate = assign({
-  debateId: () => `debate_${Date.now()}`,
-  currentRound: () => 1,
-  currentTurn: () => 0,
-  rounds: () => [],
-  totalCost: () => 0,
-  totalTokens: () => ({}),
-  error: () => null,
-});
-
-const startStreaming = assign({
-  isStreaming: () => true,
-  accumulatedText: () => '',
-  currentParticipantName: ({ event }) => {
-    if (event.type !== 'STREAM_START') return null;
-    return event.participantName;
-  },
-});
-
-const appendChunk = assign({
-  accumulatedText: ({ context, event }) => {
-    if (event.type !== 'STREAM_CHUNK') return context.accumulatedText;
-    return context.accumulatedText + event.text;
-  },
-});
-
-const completeParticipantResponse = assign(({ context, event }) => {
-  if (event.type !== 'STREAM_COMPLETE') return context;
-
-  const response = event.response;
-
-  // Get or create current round
-  let currentRoundObj = context.rounds[context.currentRound - 1];
-  if (!currentRoundObj) {
-    currentRoundObj = {
-      round_number: context.currentRound,
-      responses: [],
-      tokens_used: {},
-      cost_estimate: 0,
-      timestamp: new Date().toISOString(),
-    };
-  }
-
-  // Add response to round
-  const updatedRound = {
-    ...currentRoundObj,
-    responses: [...currentRoundObj.responses, response],
-  };
-
-  // Update rounds array
-  const updatedRounds = [...context.rounds];
-  updatedRounds[context.currentRound - 1] = updatedRound;
-
-  return {
-    rounds: updatedRounds,
-    isStreaming: false,
-    accumulatedText: '',
-    currentParticipantName: null,
-  };
-});
-
-const advanceTurn = assign(({ context }) => {
-  const nextTurn = context.currentTurn + 1;
-
-  // If we've gone through all participants, move to next round
-  if (context.config && nextTurn >= context.config.participants.length) {
-    return {
-      currentTurn: 0,
-      currentRound: context.currentRound + 1,
-    };
-  }
-
-  return {
-    currentTurn: nextTurn,
-  };
-});
-
-const completeRound = assign(({ context, event }) => {
-  if (event.type !== 'ROUND_COMPLETE') return context;
-
-  // Round completion is already handled by advanceTurn
-  // This is mainly for logging/debugging
-  return context;
-});
-
-const updateCosts = assign(({ context, event }) => {
-  if (event.type !== 'COST_UPDATE') return context;
-
-  const { total_cost, total_tokens } = event.costData;
-
-  return {
-    totalCost: total_cost,
-    totalTokens: total_tokens,
-  };
-});
-
-const setError = assign({
-  error: ({ event }) => {
-    if (event.type !== 'ERROR') return null;
-    return event.error;
-  },
-  isStreaming: () => false,
-});
-
-const clearError = assign({
-  error: () => null,
-});
-
 // ===== State Machine =====
 
 export const debateMachine = setup({
@@ -253,16 +135,112 @@ export const debateMachine = setup({
     hasMoreRounds,
   },
   actions: {
-    setConfig,
-    initializeDebate,
-    startStreaming,
-    appendChunk,
-    completeParticipantResponse,
-    advanceTurn,
-    completeRound,
-    updateCosts,
-    setError,
-    clearError,
+    setConfig: assign({
+      config: ({ event }: any) => {
+        if (event.type !== 'SET_CONFIG') return null;
+        return event.config;
+      },
+      error: () => null,
+    }),
+    initializeDebate: assign({
+      debateId: () => `debate_${Date.now()}`,
+      currentRound: () => 1,
+      currentTurn: () => 0,
+      rounds: () => [],
+      totalCost: () => 0,
+      totalTokens: () => ({}),
+      error: () => null,
+    }),
+    startStreaming: assign({
+      isStreaming: () => true,
+      accumulatedText: () => '',
+      currentParticipantName: ({ event }: any) => {
+        if (event.type !== 'STREAM_START') return null;
+        return event.participantName;
+      },
+    }),
+    appendChunk: assign({
+      accumulatedText: ({ context, event }: any) => {
+        if (event.type !== 'STREAM_CHUNK') return context.accumulatedText;
+        return context.accumulatedText + event.text;
+      },
+    }),
+    completeParticipantResponse: assign(({ context, event }: any) => {
+      if (event.type !== 'STREAM_COMPLETE') return context;
+
+      const response = event.response;
+
+      // Get or create current round
+      let currentRoundObj = context.rounds[context.currentRound - 1];
+      if (!currentRoundObj) {
+        currentRoundObj = {
+          round_number: context.currentRound,
+          responses: [],
+          tokens_used: {},
+          cost_estimate: 0,
+          timestamp: new Date().toISOString(),
+        };
+      }
+
+      // Add response to round
+      const updatedRound = {
+        ...currentRoundObj,
+        responses: [...currentRoundObj.responses, response],
+      };
+
+      // Update rounds array
+      const updatedRounds = [...context.rounds];
+      updatedRounds[context.currentRound - 1] = updatedRound;
+
+      return {
+        rounds: updatedRounds,
+        isStreaming: false,
+        accumulatedText: '',
+        currentParticipantName: null,
+      };
+    }),
+    advanceTurn: assign(({ context }: any) => {
+      const nextTurn = context.currentTurn + 1;
+
+      // If we've gone through all participants, move to next round
+      if (context.config && nextTurn >= context.config.participants.length) {
+        return {
+          currentTurn: 0,
+          currentRound: context.currentRound + 1,
+        };
+      }
+
+      return {
+        currentTurn: nextTurn,
+      };
+    }),
+    completeRound: assign(({ context, event }: any) => {
+      if (event.type !== 'ROUND_COMPLETE') return context;
+
+      // Round completion is already handled by advanceTurn
+      // This is mainly for logging/debugging
+      return context;
+    }),
+    updateCosts: assign(({ context, event }: any) => {
+      if (event.type !== 'COST_UPDATE') return context;
+
+      const { total_cost, total_tokens } = event.costData;
+
+      return {
+        totalCost: total_cost,
+        totalTokens: total_tokens,
+      };
+    }),
+    setError: assign({
+      error: ({ event }: any) => {
+        if (event.type !== 'ERROR') return null;
+        return event.error;
+      },
+      isStreaming: () => false,
+    }),
+    clearError: assign({
+      error: () => null,
+    }),
   },
 }).createMachine({
   id: 'debate',
