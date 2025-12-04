@@ -78,10 +78,10 @@ export function DebateThreadView({ debate }: DebateThreadViewProps) {
 
   return (
     <ScrollArea className="h-full">
-      <div className="p-4 space-y-2 min-h-full flex flex-col">
+      <div className="min-h-full flex flex-col">
         {/* Empty State */}
         {allMessages.length === 0 && (
-          <div className="flex-1 flex items-center justify-center text-center">
+          <div className="flex-1 flex items-center justify-center text-center p-4">
             <div className="text-muted-foreground">
               <p className="text-lg font-medium mb-1">No messages yet</p>
               <p className="text-sm">The debate will appear here once started</p>
@@ -89,7 +89,7 @@ export function DebateThreadView({ debate }: DebateThreadViewProps) {
           </div>
         )}
 
-        {/* Messages */}
+        {/* Messages - flush together with borders for separation */}
         {allMessages.map((message) => (
           <DebateMessageBubble key={message.id} message={message} />
         ))}
