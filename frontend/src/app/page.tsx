@@ -4,6 +4,7 @@
  */
 'use client';
 
+import { useState, useEffect } from 'react';
 import { useSequentialDebate } from '@/hooks/useSequentialDebate';
 import { DebateConfigPanelV2 } from '@/components/debate/DebateConfigPanelV2';
 import { DebateStatsSidebar } from '@/components/debate/DebateStatsSidebar';
@@ -24,9 +25,24 @@ export default function Home() {
     isError,
   } = debate;
 
-  // Show debate UI when active
+  // State for summary modal
+  const [showSummaryModal, setShowSummaryModal] = useState(false);
+
+  // Auto-open summary modal when debate completes
+  useEffect(() => {
+    if (isCompleted) {
+      setShowSummaryModal(true);
+    }
+  }, [isCompleted]);
+
+  // Show debate UI when active or completed
   const showDebateUI =
-    isRunning || isPaused || isCheckingProgress || isError || (isReady && context.debateId);
+    isRunning ||
+    isPaused ||
+    isCheckingProgress ||
+    isError ||
+    isCompleted ||
+    (isReady && context.debateId);
 
   // Configuring state - show config form
   if (isConfiguring) {
@@ -47,24 +63,16 @@ export default function Home() {
     );
   }
 
-  // Completed state - show summary
-  if (isCompleted) {
-    return (
-      <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 p-8">
-        <div className="max-w-6xl mx-auto">
-          <DebateSummary debate={debate} />
-        </div>
-      </div>
-    );
-  }
-
-  // Active debate - show Slack-like UI
+  // Active/completed debate - show Slack-like UI with optional summary modal
   if (showDebateUI) {
     return (
       <div className="flex h-screen overflow-hidden bg-background">
         {/* Left Sidebar - 320px fixed */}
         <aside className="w-80 flex-shrink-0 border-r">
-          <DebateStatsSidebar debate={debate} />
+          <DebateStatsSidebar
+            debate={debate}
+            onOpenSummary={() => setShowSummaryModal(true)}
+          />
         </aside>
 
         {/* Main Area - fills remaining */}
@@ -79,6 +87,13 @@ export default function Home() {
             <DebateInputControls debate={debate} />
           </div>
         </main>
+
+        {/* Summary Modal */}
+        <DebateSummary
+          debate={debate}
+          open={showSummaryModal}
+          onOpenChange={setShowSummaryModal}
+        />
       </div>
     );
   }

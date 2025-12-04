@@ -12,10 +12,11 @@ import { StatSection } from './StatSection';
 import { RoundIndicator } from './RoundIndicator';
 import { ParticipantCard } from './ParticipantCard';
 import type { UseSequentialDebateReturn } from '@/hooks/useSequentialDebate';
-import { Pause, Play, Square } from 'lucide-react';
+import { Pause, Play, Square, FileText } from 'lucide-react';
 
 interface DebateStatsSidebarProps {
   debate: UseSequentialDebateReturn;
+  onOpenSummary?: () => void;
 }
 
 function getStateBadge(stateValue: string) {
@@ -33,7 +34,7 @@ function getStateBadge(stateValue: string) {
   }
 }
 
-export function DebateStatsSidebar({ debate }: DebateStatsSidebarProps) {
+export function DebateStatsSidebar({ debate, onOpenSummary }: DebateStatsSidebarProps) {
   const {
     context,
     stateValue,
@@ -150,34 +151,47 @@ export function DebateStatsSidebar({ debate }: DebateStatsSidebarProps) {
 
       {/* Control Buttons - Fixed Bottom */}
       <div className="p-4 border-t bg-background/50 space-y-2">
-        {isPaused ? (
-          <Button onClick={resumeDebate} className="w-full" size="sm">
-            <Play className="h-4 w-4 mr-2" />
-            Resume
-          </Button>
-        ) : (
+        {isCompleted ? (
           <Button
-            onClick={pauseDebate}
-            disabled={!isRunning}
-            variant="outline"
+            onClick={onOpenSummary}
             className="w-full"
             size="sm"
           >
-            <Pause className="h-4 w-4 mr-2" />
-            Pause
+            <FileText className="h-4 w-4 mr-2" />
+            View Summary
           </Button>
-        )}
+        ) : (
+          <>
+            {isPaused ? (
+              <Button onClick={resumeDebate} className="w-full" size="sm">
+                <Play className="h-4 w-4 mr-2" />
+                Resume
+              </Button>
+            ) : (
+              <Button
+                onClick={pauseDebate}
+                disabled={!isRunning}
+                variant="outline"
+                className="w-full"
+                size="sm"
+              >
+                <Pause className="h-4 w-4 mr-2" />
+                Pause
+              </Button>
+            )}
 
-        <Button
-          onClick={stopDebate}
-          disabled={!isRunning && !isPaused}
-          variant="destructive"
-          className="w-full"
-          size="sm"
-        >
-          <Square className="h-4 w-4 mr-2" />
-          Stop Debate
-        </Button>
+            <Button
+              onClick={stopDebate}
+              disabled={!isRunning && !isPaused}
+              variant="destructive"
+              className="w-full"
+              size="sm"
+            >
+              <Square className="h-4 w-4 mr-2" />
+              Stop Debate
+            </Button>
+          </>
+        )}
       </div>
     </div>
   );
