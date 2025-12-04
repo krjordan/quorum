@@ -27,16 +27,12 @@ interface DebateConfigPanelV2Props {
 }
 
 // Available models - verified against LiteLLM docs (https://docs.litellm.ai/docs/providers/anthropic)
+// Prioritizing cost-effective models (3.5/3.7 series)
 const AVAILABLE_MODELS = [
   { id: 'gpt-4o', name: 'GPT-4o', provider: 'OpenAI' },
   {
-    id: 'claude-sonnet-4-5-20250929',
-    name: 'Claude Sonnet 4.5 (Latest)',
-    provider: 'Anthropic',
-  },
-  {
-    id: 'claude-opus-4-5-20251101',
-    name: 'Claude Opus 4.5',
+    id: 'claude-3-7-sonnet-20250219',
+    name: 'Claude 3.7 Sonnet',
     provider: 'Anthropic',
   },
   {
@@ -45,13 +41,13 @@ const AVAILABLE_MODELS = [
     provider: 'Anthropic',
   },
   {
-    id: 'claude-3-opus-20240229',
-    name: 'Claude 3 Opus',
+    id: 'claude-3-haiku-20240307',
+    name: 'Claude 3 Haiku (Fastest)',
     provider: 'Anthropic',
   },
   {
-    id: 'claude-3-haiku-20240307',
-    name: 'Claude 3 Haiku',
+    id: 'claude-3-opus-20240229',
+    name: 'Claude 3 Opus',
     provider: 'Anthropic',
   },
   { id: 'gemini-1.5-pro', name: 'Gemini 1.5 Pro', provider: 'Google' },
@@ -75,7 +71,7 @@ export function DebateConfigPanelV2({ debate }: DebateConfigPanelV2Props) {
     },
     {
       name: 'Agent 2',
-      model: AVAILABLE_MODELS[1].id, // Claude Sonnet 4.5
+      model: AVAILABLE_MODELS[1].id, // Claude 3.7 Sonnet
       system_prompt: DEFAULT_SYSTEM_PROMPT,
       temperature: 0.7,
     },
