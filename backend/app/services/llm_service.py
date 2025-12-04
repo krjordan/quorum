@@ -19,6 +19,7 @@ class LLMService:
         model: Optional[str] = None,
     ) -> AsyncGenerator[str, None]:
         model_to_use = model or self.default_model
+        print(f"[LLM Service] Starting stream for model: {model_to_use}")
 
         try:
             response = await acompletion(
@@ -28,11 +29,22 @@ class LLMService:
                 api_key=self._get_api_key(model_to_use),
             )
 
+            chunk_count = 0
             async for chunk in response:
+                chunk_count += 1
+                print(f"[LLM Service] Received chunk #{chunk_count}: {chunk}")
                 if hasattr(chunk, 'choices') and len(chunk.choices) > 0:
                     delta = chunk.choices[0].delta
+                    print(f"[LLM Service] Delta: {delta}")
                     if hasattr(delta, 'content') and delta.content:
+                        print(f"[LLM Service] Yielding content: {delta.content[:50]}...")
                         yield delta.content
+                    else:
+                        print(f"[LLM Service] No content in delta or empty content")
+                else:
+                    print(f"[LLM Service] No choices in chunk or empty choices")
+
+            print(f"[LLM Service] Stream complete. Total chunks: {chunk_count}")
 
         except Exception as e:
             print(f"LLM streaming error: {str(e)}")
