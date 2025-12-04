@@ -129,36 +129,44 @@ class SequentialDebateService:
         participant: ParticipantConfigV2
     ) -> List[Dict[str, str]]:
         """
-        Build conversation context for current participant
+        Build conversation context for current participant.
 
-        Args:
-            debate: Debate instance
-            participant: Current participant
-
-        Returns:
-            List of messages for LLM (system + user + previous responses)
+        Anthropic's Messages API (and most chat APIs) expect the final entry
+        before the model responds to have role "user". To keep the transcript
+        intact while satisfying that contract, we embed the prior debate history
+        into a single user message.
         """
-        messages = []
-
-        # System prompt
-        messages.append({
+        messages = [{
             "role": "system",
             "content": participant.system_prompt
-        })
+        }]
 
-        # User message with topic
-        messages.append({
-            "role": "user",
-            "content": f"Topic: {debate.config.topic}\n\nPlease provide your response to this topic. Consider any previous arguments if this is not the first round."
-        })
+        user_content_lines = [
+            f"Topic: {debate.config.topic}",
+            "",
+            f"You are {participant.name}. Provide your next debate response.",
+            "Be concise, reference earlier arguments when helpful, "
+            "and continue the conversation naturally."
+        ]
 
-        # Add previous responses in chronological order (all rounds, all participants)
+        transcript_lines = []
         for round_obj in debate.rounds:
             for response in round_obj.responses:
-                messages.append({
-                    "role": "assistant",
-                    "content": f"[{response.participant_name}]: {response.content}"
-                })
+                transcript_lines.append(f"{response.participant_name}: {response.content}")
+
+        if transcript_lines:
+            user_content_lines.extend([
+                "",
+                "Transcript so far:",
+                *transcript_lines,
+                "",
+                "Consider the transcript above when crafting your response."
+            ])
+
+        messages.append({
+            "role": "user",
+            "content": "\n".join(user_content_lines)
+        })
 
         return messages
 

@@ -106,9 +106,19 @@ class LLMService:
             print(f"[Anthropic SDK] Getting completion for {model}")
             response = await self.anthropic_client.messages.create(**kwargs)
 
-            # Extract text content
-            content = response.content[0].text
-            print(f"[Anthropic SDK] Got {len(content)} characters")
+            # Extract text content (Claude may return multiple blocks)
+            content_blocks = []
+            for block in response.content or []:
+                block_type = getattr(block, "type", None)
+                block_text = getattr(block, "text", None)
+                if block_type == "text" and block_text:
+                    content_blocks.append(block_text)
+
+            if not content_blocks:
+                raise ValueError("Anthropic SDK returned no text blocks")
+
+            content = "\n\n".join(content_blocks)
+            print(f"[Anthropic SDK] Got {len(content)} characters across {len(content_blocks)} blocks")
 
             return content
 
