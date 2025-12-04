@@ -2,6 +2,7 @@ import asyncio
 from typing import AsyncGenerator, List, Dict, Any, Optional
 import litellm
 from litellm import acompletion
+from anthropic import AsyncAnthropic
 from app.config.settings import settings
 
 # Configure LiteLLM
@@ -12,6 +13,7 @@ litellm.telemetry = settings.litellm_telemetry
 class LLMService:
     def __init__(self):
         self.default_model = "gpt-4o"
+        self.anthropic_client = None
 
     async def stream_completion(
         self,
@@ -45,6 +47,11 @@ class LLMService:
     ) -> str:
         model_to_use = model or self.default_model
 
+        # Use Anthropic SDK directly for Claude models (LiteLLM is broken)
+        if "claude" in model_to_use.lower():
+            return await self._get_claude_completion(messages, model_to_use)
+
+        # Use LiteLLM for other models
         try:
             response = await acompletion(
                 model=model_to_use,
@@ -53,10 +60,60 @@ class LLMService:
                 api_key=self._get_api_key(model_to_use),
             )
 
-            return response.choices[0].message.content
+            if hasattr(response, 'choices') and len(response.choices) > 0:
+                content = response.choices[0].message.content
+                if content is None:
+                    raise ValueError(f"LiteLLM returned None content for model {model_to_use}")
+                return content
+            else:
+                raise ValueError(f"No choices in response for model {model_to_use}")
 
         except Exception as e:
             print(f"LLM completion error: {str(e)}")
+            raise
+
+    async def _get_claude_completion(
+        self,
+        messages: List[Dict[str, str]],
+        model: str
+    ) -> str:
+        """Get completion using Anthropic SDK directly (LiteLLM broken for Claude)"""
+        try:
+            # Initialize client if needed
+            if self.anthropic_client is None:
+                self.anthropic_client = AsyncAnthropic(api_key=settings.anthropic_api_key)
+
+            # Extract system message
+            system_message = None
+            user_messages = []
+
+            for msg in messages:
+                if msg["role"] == "system":
+                    system_message = msg["content"]
+                else:
+                    user_messages.append(msg)
+
+            # Create request
+            kwargs = {
+                "model": model,
+                "messages": user_messages,
+                "max_tokens": 4096,
+            }
+
+            if system_message:
+                kwargs["system"] = system_message
+
+            print(f"[Anthropic SDK] Getting completion for {model}")
+            response = await self.anthropic_client.messages.create(**kwargs)
+
+            # Extract text content
+            content = response.content[0].text
+            print(f"[Anthropic SDK] Got {len(content)} characters")
+
+            return content
+
+        except Exception as e:
+            print(f"Anthropic SDK error: {str(e)}")
             raise
 
     def _get_api_key(self, model: str) -> str:

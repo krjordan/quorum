@@ -239,30 +239,52 @@ class SequentialDebateService:
         # Count input tokens
         input_tokens = token_counter.count_message_tokens(messages, participant.model)
 
-        # Stream LLM response
+        # Get LLM response
         accumulated_content = ""
         start_time = time.time()
         output_tokens = 0
 
-        try:
-            async for chunk in llm_service.stream_completion(messages, participant.model):
-                accumulated_content += chunk
-                output_tokens = token_counter.count_tokens(accumulated_content, participant.model)
+        # Check if model is Claude (LiteLLM streaming broken for Claude)
+        is_claude = "claude" in participant.model.lower()
 
-                # Emit chunk event
-                yield SequentialTurnEvent(
-                    event_type=SequentialTurnEventType.CHUNK,
-                    debate_id=debate_id,
-                    round_number=current_round_num,
-                    turn_index=current_turn_index,
-                    data={
-                        "text": chunk,
-                        "participant_name": participant.name
-                    }
-                )
+        try:
+            if is_claude:
+                # Use non-streaming for Claude models
+                logger.info(f"Using non-streaming completion for Claude model: {participant.model}")
+                accumulated_content = await llm_service.get_completion(messages, participant.model)
+                output_tokens = token_counter.count_tokens(accumulated_content, participant.model)
+                if accumulated_content:
+                    # Emit a single chunk so the frontend receives Claude's reply
+                    yield SequentialTurnEvent(
+                        event_type=SequentialTurnEventType.CHUNK,
+                        debate_id=debate_id,
+                        round_number=current_round_num,
+                        turn_index=current_turn_index,
+                        data={
+                            "text": accumulated_content,
+                            "participant_name": participant.name
+                        }
+                    )
+            else:
+                # Use streaming for other models (GPT, Gemini, etc.)
+                async for chunk in llm_service.stream_completion(messages, participant.model):
+                    accumulated_content += chunk
+                    output_tokens = token_counter.count_tokens(accumulated_content, participant.model)
+
+                    # Emit chunk event
+                    yield SequentialTurnEvent(
+                        event_type=SequentialTurnEventType.CHUNK,
+                        debate_id=debate_id,
+                        round_number=current_round_num,
+                        turn_index=current_turn_index,
+                        data={
+                            "text": chunk,
+                            "participant_name": participant.name
+                        }
+                    )
 
         except Exception as e:
-            logger.error(f"Error streaming from LLM: {str(e)}")
+            logger.error(f"Error getting LLM response: {str(e)}")
             yield SequentialTurnEvent(
                 event_type=SequentialTurnEventType.ERROR,
                 debate_id=debate_id,
