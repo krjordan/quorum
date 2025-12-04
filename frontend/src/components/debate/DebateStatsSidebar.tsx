@@ -46,7 +46,10 @@ export function DebateStatsSidebar({ debate }: DebateStatsSidebarProps) {
   } = debate;
 
   const totalCost = context.totalCost || 0;
-  const totalTokens = context.totalTokens || 0;
+  // Sum all token values from the totalTokens object
+  const totalTokens = context.totalTokens
+    ? Object.values(context.totalTokens).reduce((sum, val) => sum + val, 0)
+    : 0;
   const currentRound = context.currentRound || 0;
   const maxRounds = context.config?.max_rounds || 0;
   const costThreshold = context.config?.cost_warning_threshold || 1.0;
