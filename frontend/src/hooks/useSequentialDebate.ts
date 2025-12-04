@@ -126,12 +126,9 @@ export function useSequentialDebate() {
             break;
 
           case 'chunk':
-            // Accumulate text locally in ref
+            // Ignore streaming chunks - we'll show loading indicator instead
+            // Just accumulate for participant_complete event
             accumulatedTextRef.current += turnEvent.data.text;
-            send({
-              type: 'STREAM_CHUNK',
-              text: turnEvent.data.text,
-            });
             break;
 
           case 'participant_complete':

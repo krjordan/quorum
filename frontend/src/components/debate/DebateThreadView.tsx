@@ -7,6 +7,7 @@
 import { useEffect, useRef, useMemo } from 'react';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { DebateMessageBubble } from './DebateMessageBubble';
+import { TypingIndicator } from './TypingIndicator';
 import type { UseSequentialDebateReturn } from '@/hooks/useSequentialDebate';
 import type { DebateMessage } from '@/types/debate-thread';
 
@@ -49,32 +50,17 @@ export function DebateThreadView({ debate }: DebateThreadViewProps) {
       });
     });
 
-    // Add current streaming message
-    if (context.isStreaming && context.config) {
-      const currentParticipant = context.config.participants[context.currentTurn];
-      if (currentParticipant) {
-        console.log('[DebateThreadView] Adding streaming message:', currentParticipant.name, 'Content length:', context.accumulatedText.length);
-        messages.push({
-          id: 'streaming',
-          participantName: currentParticipant.name,
-          participantIndex: context.currentTurn,
-          model: currentParticipant.model,
-          content: cleanContent(context.accumulatedText, currentParticipant.name),
-          isStreaming: true,
-        });
-      }
-    } else {
-      console.log('[DebateThreadView] NOT adding streaming message. isStreaming:', context.isStreaming, 'hasConfig:', !!context.config);
-    }
+    // Note: We no longer show streaming text - typing indicator is shown separately below
+    // The isStreaming flag is used to render <TypingIndicator /> component
 
     console.log('[DebateThreadView] Total messages:', messages.length, 'Rounds:', context.rounds.length, 'isStreaming:', context.isStreaming);
     return messages;
-  }, [context.rounds, context.isStreaming, context.accumulatedText, context.config, context.currentTurn]);
+  }, [context.rounds]);
 
-  // Auto-scroll to bottom on new messages
+  // Auto-scroll to bottom on new messages or typing indicator
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [allMessages.length]);
+  }, [allMessages.length, context.isStreaming]);
 
   return (
     <ScrollArea className="h-full">
@@ -93,6 +79,15 @@ export function DebateThreadView({ debate }: DebateThreadViewProps) {
         {allMessages.map((message) => (
           <DebateMessageBubble key={message.id} message={message} />
         ))}
+
+        {/* Typing Indicator - shown when agent is responding */}
+        {context.isStreaming && context.config && (
+          <TypingIndicator
+            participantName={context.config.participants[context.currentTurn].name}
+            participantIndex={context.currentTurn}
+            model={context.config.participants[context.currentTurn].model}
+          />
+        )}
 
         {/* Auto-scroll anchor */}
         <div ref={messagesEndRef} />
