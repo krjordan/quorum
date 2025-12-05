@@ -6,6 +6,7 @@
 
 import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
+import { CitationTracker } from './CitationTracker';
 import type { DebateMessage } from '@/types/debate-thread';
 import { memo } from 'react';
 
@@ -36,6 +37,7 @@ function DebateMessageBubbleComponent({ message }: DebateMessageBubbleProps) {
     responseTime,
     timestamp,
     isStreaming,
+    citations,
   } = message;
 
   const colorClass = AGENT_COLORS[participantIndex % AGENT_COLORS.length];
@@ -85,6 +87,13 @@ function DebateMessageBubbleComponent({ message }: DebateMessageBubbleProps) {
           <span className="inline-block w-0.5 h-4 bg-primary animate-pulse ml-1 align-middle" />
         )}
       </div>
+
+      {/* Citations */}
+      {citations && citations.length > 0 && (
+        <div className="ml-10 mt-3">
+          <CitationTracker citations={citations} />
+        </div>
+      )}
 
       {/* Metadata (on hover) */}
       {(tokens !== undefined || responseTime !== undefined) && (

@@ -27,6 +27,8 @@ class Settings(BaseSettings):
         return v
 
     # Database
+    # Default to SQLite for development, use PostgreSQL in production
+    # Example PostgreSQL URL: postgresql://user:password@localhost:5432/quorum
     database_url: str = "sqlite:///./data/quorum.db"
 
     # Redis (Optional)

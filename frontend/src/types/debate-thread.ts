@@ -3,6 +3,8 @@
  * Used by DebateThreadView and DebateMessageBubble components
  */
 
+import type { Citation, Contradiction } from './conversation-quality';
+
 export interface DebateMessage {
   id: string;
   participantName: string;
@@ -14,6 +16,9 @@ export interface DebateMessage {
   timestamp?: string;
   roundNumber?: number;
   isStreaming: boolean;
+  // Quality metadata
+  citations?: Citation[];
+  contradictions?: Contradiction[];
 }
 
 export interface DebateThread {

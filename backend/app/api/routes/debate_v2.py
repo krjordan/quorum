@@ -1,7 +1,9 @@
 """
 Debate V2 API Routes - Sequential turn-based debate endpoints
 Phase 2 implementation: Sequential debates without AI judge.
+Phase 3 enhancement: Integrated quality monitoring with SSE streams.
 """
+import json
 from fastapi import APIRouter, HTTPException
 from fastapi.responses import StreamingResponse
 from typing import AsyncGenerator
@@ -9,6 +11,10 @@ from app.models.debate_v2 import (
     DebateConfigV2,
     DebateV2,
     DebateSummary
+)
+from app.models.quality_schemas import (
+    QualityEvent,
+    QualityEventType
 )
 from app.services.sequential_debate_service import sequential_debate_service
 from app.services.summary_service import summary_service
@@ -90,11 +96,31 @@ async def stream_next_turn(debate_id: str):
         - debate_complete: All rounds completed or manually stopped
         - cost_update: Cost tracking update
         - error: Error occurred
+
+    Quality Event Types (Phase 3):
+        - contradiction_detected: Contradiction found between statements
+        - loop_detected: Conversational loop identified
+        - health_score_update: Quality metrics updated
+        - citation_missing: Factual claim without citation
+        - quality_alert: General quality warning
     """
     async def event_generator() -> AsyncGenerator[str, None]:
         try:
             async for event in sequential_debate_service.get_next_turn_response(debate_id):
                 yield f"data: {event.model_dump_json()}\n\n"
+
+                # TODO: Phase 3 - Integrate quality monitoring here
+                # After each turn completes, check for quality issues:
+                # - Check for contradictions with previous statements
+                # - Detect conversation loops
+                # - Update health score
+                # - Verify citations
+                #
+                # Example integration (to be implemented):
+                # if event.event_type == "participant_complete":
+                #     quality_events = await quality_service.analyze_turn(debate_id, event)
+                #     for quality_event in quality_events:
+                #         yield f"data: {quality_event.model_dump_json()}\n\n"
 
         except ValueError as e:
             # Debate not found or invalid state
@@ -105,10 +131,10 @@ async def stream_next_turn(debate_id: str):
                 "turn_index": 0,
                 "data": {"error": str(e)}
             }
-            yield f"data: {error_event}\n\n"
+            yield f"data: {json.dumps(error_event)}\n\n"
 
         except Exception as e:
-            logger.error(f"Error streaming turn for debate {debate_id}: {str(e)}")
+            logger.error(f"Error streaming turn for debate {debate_id}: {str(e)}", exc_info=True)
             error_event = {
                 "event_type": "error",
                 "debate_id": debate_id,
@@ -116,7 +142,7 @@ async def stream_next_turn(debate_id: str):
                 "turn_index": 0,
                 "data": {"error": str(e)}
             }
-            yield f"data: {error_event}\n\n"
+            yield f"data: {json.dumps(error_event)}\n\n"
 
     return StreamingResponse(
         event_generator(),

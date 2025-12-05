@@ -161,6 +161,7 @@ class SequentialTurnEventType(str, Enum):
     DEBATE_COMPLETE = "debate_complete"
     DEBATE_STOPPED = "debate_stopped"
     COST_UPDATE = "cost_update"
+    QUALITY_UPDATE = "quality_update"  # Phase 3: Health scores, contradictions, loops
     ERROR = "error"
 
 

@@ -1,0 +1,563 @@
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0data: {"event_type":"debate_start","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"topic":"Should software engineers write tests before code?","participants":["TDD Advocate","Pragmatist"],"max_rounds":1},"timestamp":"2025-12-05T04:24:09.028269"}
+
+data: {"event_type":"participant_start","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"participant_name":"TDD Advocate","participant_index":0,"model":"gpt-4o-mini"},"timestamp":"2025-12-05T04:24:09.029724"}
+
+100   516    0   516    0     0    427      0 --:--:--  0:00:01 --:--:--   427data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":"Absolutely","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.009837"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":",","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.011438"}
+
+100   913    0   913    0     0    451      0 --:--:--  0:00:02 --:--:--   451data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" writing","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.026891"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" tests","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.028481"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" before","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.052528"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" code","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.053894"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" is","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.076478"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" a","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.078149"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" cornerstone","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.107395"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" of","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.108808"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" Test","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.135336"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":"-","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.136749"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":"Driven","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.154610"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" Development","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.156357"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" (","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.177331"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":"T","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.178923"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":"DD","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.217018"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":")","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.218492"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" and","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.253461"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" brings","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.254905"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" numerous","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.269844"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" benefits","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.271326"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" that","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.294988"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" enhance","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.296440"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" both","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.352926"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" software","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.354432"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" quality","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.374088"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" and","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.375699"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" developer","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.396323"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" productivity","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.397918"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":".\n\n","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.415818"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":"First","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.417315"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":",","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.494098"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" writing","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.495687"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" tests","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.525790"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" first","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.527340"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" ensures","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.547636"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" that","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.549142"}
+
+100  8072    0  8072    0     0   3153      0 --:--:--  0:00:02 --:--:--  3153data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" you","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.577620"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" have","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.579727"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" a","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.614082"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" clear","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.615572"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" understanding","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.638661"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" of","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.640352"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" the","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.663410"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" desired","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.665113"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" functionality","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.690453"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" before","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.691920"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" diving","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.710197"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" into","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.711482"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" the","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.733539"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" implementation","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.735081"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":".","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.757504"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" It","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.758911"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" acts","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.783151"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" as","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.784699"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" a","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.808636"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" specification","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.810138"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":",","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.828544"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" helping","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.830094"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" to","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.848756"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" clarify","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.850112"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" requirements","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.875848"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" and","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.877441"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" reducing","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.898941"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" ambiguity","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.900519"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":".","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.956630"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" This","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.958312"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" leads","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.960426"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" to","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.961794"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" writing","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.967836"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" only","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.969256"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" the","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.991238"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" necessary","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:11.992981"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" code","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.014582"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" to","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.016134"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" pass","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.039354"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" the","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.041035"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" test","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.067101"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":",","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.068887"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" promoting","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.092532"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" simpler","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.094354"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" and","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.114974"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" more","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.117000"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" focused","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.165463"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" implementations","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.167389"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":".\n\n","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.188832"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":"Moreover","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.190555"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":",","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.219123"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" T","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.220893"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":"DD","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.242134"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" fosters","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.244110"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" better","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.275483"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" design","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.277344"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" decisions","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.444851"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":".","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.446745"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" By","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.520901"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" writing","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.522694"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" tests","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.539042"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" first","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.540874"}
+
+100 20410    0 20410    0     0   5747      0 --:--:--  0:00:03 --:--:--  5746data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":",","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.562628"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" you","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.564716"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":"’re","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.585051"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" encouraged","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.587222"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" to","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.614950"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" think","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.616926"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" about","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.644994"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" the","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.646927"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" design","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.671669"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" implications","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.673857"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" up","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.693358"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" front","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.695562"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":",","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.715751"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" leading","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.718077"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" to","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.741824"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" more","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.743778"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" modular","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.761865"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" and","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.763896"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" dec","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.800954"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":"ou","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.803489"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":"pled","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.808933"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" code","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.810917"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":".","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.840377"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" This","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.843055"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" not","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.891273"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" only","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.893488"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" enhances","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.947024"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" maintain","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.949057"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":"ability","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.981404"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" but","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:12.983597"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" also","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.006882"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" makes","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.008673"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" the","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.030712"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" code","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.032645"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":"base","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.056454"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" easier","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.058749"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" to","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.075060"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" understand","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.076748"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" for","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.101675"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" new","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.103956"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" developers","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.127222"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":".\n\n","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.129084"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":"Additionally","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.146217"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":",","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.147950"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" having","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.189112"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" a","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.190808"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" comprehensive","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.218616"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" suite","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.220660"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" of","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.243959"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" tests","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.246828"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" provides","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.273100"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" a","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.274977"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" safety","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.295954"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" net","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.298162"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" during","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.351405"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" ref","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.353587"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":"actoring","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.386770"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":".","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.388840"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" When","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.402450"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" you","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.404130"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" know","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.425348"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" that","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.428325"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" existing","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.449331"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" functionality","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.453399"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" is","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.475764"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" covered","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.476858"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" by","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.495297"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" tests","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.497025"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":",","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.525142"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" you","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.526962"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" can","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.545360"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" confidently","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.546521"}
+
+100 34708    0 34708    0     0   7616      0 --:--:--  0:00:04 --:--:--  7616data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" make","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.564567"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" changes","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.566253"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":",","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.588233"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" improving","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.589387"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" code","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.620149"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" quality","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.621531"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" over","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.643254"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" time","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.643906"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" without","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.736107"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" fear","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.736959"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" of","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.767040"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" introducing","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.767815"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" new","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.791749"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" bugs","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.792712"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":".\n\n","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.816410"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":"Finally","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.817136"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":",","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.838033"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" T","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.838795"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":"DD","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.862969"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" leads","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.863865"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" to","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.888139"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" a","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.888746"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" more","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.923097"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" efficient","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.928555"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" development","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.963098"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" process","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.964058"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" in","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.993954"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" the","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:13.995033"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" long","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:14.042859"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" run","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:14.044725"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":".","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:14.097041"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" Although","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:14.098889"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" it","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:14.146618"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" might","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:14.149043"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" seem","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:14.171422"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" slower","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:14.173397"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" initially","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:14.204192"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":",","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:14.206381"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" the","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:14.251211"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" early","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:14.253845"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" identification","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:14.310705"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" of","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:14.312844"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" issues","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:14.406633"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" through","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:14.408709"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" testing","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:14.501359"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" saves","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:14.503318"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" significant","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:14.536892"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" time","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:14.538914"}
+
+100 44251    0 44251    0     0   7973      0 --:--:--  0:00:05 --:--:-- 10072data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" that","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:14.566517"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" would","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:14.568395"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" otherwise","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:14.725895"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" be","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:14.730053"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" spent","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:14.733199"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" on","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:14.735319"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" debugging","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:14.766738"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" and","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:14.768714"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" fixing","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:14.785699"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" post","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:14.787760"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":"-","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:14.799006"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":"implementation","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:14.801067"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":".\n\n","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:14.852639"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":"In","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:14.854542"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" summary","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:14.883078"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":",","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:14.885501"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" writing","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:14.898685"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" tests","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:14.900634"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" first","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:14.930299"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" cultiv","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:14.935033"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":"ates","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:14.997940"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" a","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:14.999973"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" disciplined","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:15.021383"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" approach","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:15.023086"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" to","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:15.041081"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" coding","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:15.042581"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":",","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:15.066020"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" resulting","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:15.067912"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" in","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:15.093074"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" higher","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:15.095503"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":"-quality","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:15.108689"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" software","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:15.110894"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" and","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:15.131449"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" a","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:15.132965"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" more","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:15.160397"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" streamlined","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:15.161159"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" development","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:15.212534"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" workflow","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:15.215156"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":".","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:15.226312"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" How","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:15.228374"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" do","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:15.281447"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" you","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:15.289334"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" feel","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:15.299534"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" about","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:15.301187"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" the","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:15.388633"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" potential","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:15.390576"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" long","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:15.432116"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":"-term","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:15.434283"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" gains","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:15.456586"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" compared","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:15.458575"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" to","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:15.482220"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" the","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:15.484475"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" initial","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:15.504559"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" time","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:15.506687"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":" investment","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:15.539823"}
+
+data: {"event_type":"chunk","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"text":"?","participant_name":"TDD Advocate"},"timestamp":"2025-12-05T04:24:15.592518"}
+
+100 55389    0 55389    0     0   8388      0 --:--:--  0:00:06 --:--:-- 11894data: {"event_type":"participant_complete","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"participant_name":"TDD Advocate","tokens_used":344,"cost":0.0029375,"response_time_ms":7507.935285568237},"timestamp":"2025-12-05T04:24:16.546438"}
+
+100 55659    0 55659    0     0   7336      0 --:--:--  0:00:07 --:--:--  9466100 55659    0 55659    0     0   6480      0 --:--:--  0:00:08 --:--:--  6998100 55659    0 55659    0     0   5803      0 --:--:--  0:00:09 --:--:--  4161data: {"event_type":"cost_update","debate_id":"debate_v2_5d3b6191258e","round_number":1,"turn_index":0,"data":{"total_cost":0.0029375,"round_cost":0.0029375,"total_tokens":{"gpt-4o-mini":344},"warning_threshold":1.0},"timestamp":"2025-12-05T04:24:18.819100"}
+
+100 55919    0 55919    0     0   5683      0 --:--:--  0:00:09 --:--:--  2721

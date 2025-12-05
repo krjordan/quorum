@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 from app.config.settings import settings
-from app.api.routes import chat, health, debate, debate_v2
+from app.api.routes import chat, health, debate, debate_v2, quality
 
 
 @asynccontextmanager
@@ -45,6 +45,7 @@ app.include_router(health.router, tags=["Health"])
 app.include_router(chat.router, prefix="/api/v1/chat", tags=["Chat"])
 app.include_router(debate.router, prefix="/api/v1", tags=["Debates"])
 app.include_router(debate_v2.router, prefix="/api/v1/debates", tags=["Debates V2"])
+app.include_router(quality.router, prefix="/api/v1/quality", tags=["Quality Monitoring"])
 
 
 if __name__ == "__main__":

@@ -1,8 +1,15 @@
-# Quorum - AI Debate Platform
+# Quorum - Interactive Multi-Agent Conversation Platform
 
-**Multi-LLM structured debates with AI judge oversight**
+**Have intelligent conversations with multiple AI agents that learn, remember, and collaborate**
 
-Quorum is an open-source platform that enables multiple LLMs to engage in structured debates and discussions on user-provided topics. Watch AI models argue different positions, with an AI judge monitoring quality, detecting diminishing returns, and determining when meaningful conclusions have been reached.
+Quorum is an open-source platform that enables you to participate in natural conversations with multiple AI agents. Unlike other tools that require technical expertise or overwhelm with complexity, Quorum provides a simple, high-quality conversation experience where agents maintain context, avoid contradictions, and get smarter over time.
+
+## 🌟 What Makes Quorum Different
+
+- **Conversation Quality:** Anti-contradiction detection, loop prevention, and real-time health scoring ensure productive discussions
+- **Intelligent Memory:** Agents remember past conversations and learn your preferences, getting better with every interaction
+- **Zero-Config Start:** No setup required—just start typing and intelligent agents join the conversation
+- **For Everyone:** Designed for non-technical users while offering advanced customization for power users
 
 ## 🚀 Quick Start
 
@@ -62,7 +69,7 @@ npm run dev
 # Stop frontend: Press Ctrl+C in the frontend terminal
 ```
 
-## 📋 Current Status: Phase 2 Complete
+## 📋 Current Status: Phase 3 In Progress
 
 **Phase 1: Single-LLM Streaming Chat Interface** ✅ COMPLETE
 - ✅ Next.js 15 frontend with TypeScript strict mode
@@ -81,6 +88,13 @@ npm run dev
 - ✅ Formatted markdown summaries
 - ✅ Comprehensive backend tests (34/34 passing)
 - ✅ Python 3.9+ compatibility
+
+**Phase 3: Interactive Conversation Platform (MVP)** 🚧 IN PROGRESS
+- ✅ Conversation Quality Management (anti-contradiction, loop detection, health scoring) - Backend complete
+- ✅ Agent rotation system - Fixed and fully operational
+- 🚧 Intelligent Memory Architecture (three-tier memory, context retrieval, personalization)
+- 🚧 Non-Technical UX (zero-config start, templates, agent personalities)
+- 🚧 Frontend quality indicators integration
 
 ## 🏗️ Architecture
 
@@ -103,6 +117,13 @@ Development Environment
 
 ## 📚 Documentation
 
+### Product & Strategy
+- [Product Roadmap](./ROADMAP.md) - Strategic direction and development phases
+- [MVP Scope](./docs/MVP_SCOPE.md) - Detailed Phase 3 feature specifications
+- [Competitive Research](./docs/research/competitive-gap-analysis.md) - Market analysis and differentiation
+- [LLM Conversation Apps Research](./docs/research/llm-debate-conversation-applications-research.md)
+
+### Technical Documentation
 - [Product Requirements Document](./docs/quorum-prd.md)
 - [Technical Architecture](./FINAL_ARCHITECTURE.md)
 - [Tech Stack Consensus](./docs/TECH_STACK_CONSENSUS.md)
@@ -352,29 +373,21 @@ docker-compose -f docker/development/docker-compose.yml down -v
 
 ## 🗺️ Roadmap
 
-### Phase 2: Multi-LLM Debate Engine (Weeks 3-4)
-- Multi-provider support (Anthropic, Google, Mistral)
-- XState debate state machine
-- Parallel streaming (2-4 debaters)
-- Context management
-- Token counting and cost tracking
+See [ROADMAP.md](./ROADMAP.md) for the complete strategic roadmap.
 
-### Phase 3: Judge & Features (Weeks 5-6)
-- Judge agent with structured output
-- Debate format selection
-- Persona assignment
-- Export functionality
+### **Completed:**
+- ✅ Phase 1: Single-LLM Chat Interface
+- ✅ Phase 2: Sequential Multi-LLM Debate System
 
-### Phase 4: Polish & Testing (Weeks 7-8)
-- Comprehensive test suite
-- Error handling
-- Security audit
-- Performance optimization
+### **In Progress:**
+- 🚧 **Phase 3: Interactive Conversation Platform (MVP)** (4-6 weeks)
+  - Conversation Quality Management
+  - Intelligent Memory Architecture
+  - Non-Technical User Experience
 
-### Phase 5: Deployment & Launch (Week 9)
-- Production deployment
-- Community guidelines
-- Public release
+### **Next:**
+- 📅 Phase 4: Enhanced Experience (Real-time streaming, consensus tools, collaboration)
+- 📅 Phase 5: Advanced Features (Voice, domain-specific agents, enterprise)
 
 ## 📝 License
 

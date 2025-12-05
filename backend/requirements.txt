@@ -7,6 +7,11 @@ python-multipart==0.0.17
 litellm==1.51.3
 tiktoken==0.8.0
 anthropic==0.39.0
+openai==1.54.3
+
+# Embeddings and ML
+numpy==1.26.4
+scikit-learn==1.5.2
 
 # Data Validation and Settings
 pydantic==2.9.2
@@ -16,9 +21,12 @@ pydantic-settings==2.6.1
 python-jose[cryptography]==3.3.0
 passlib[bcrypt]==1.7.4
 
-# Database (SQLite for MVP)
+# Database (PostgreSQL with pgvector)
 sqlalchemy==2.0.36
 alembic==1.14.0
+psycopg2-binary==2.9.9
+asyncpg==0.29.0
+pgvector==0.3.5
 
 # Redis (optional for rate limiting)
 redis==5.2.0

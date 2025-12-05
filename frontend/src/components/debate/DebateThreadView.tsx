@@ -8,6 +8,8 @@ import { useEffect, useRef, useMemo } from 'react';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { DebateMessageBubble } from './DebateMessageBubble';
 import { TypingIndicator } from './TypingIndicator';
+import { HealthScoreIndicator } from './HealthScoreIndicator';
+import { ContradictionAlert } from './ContradictionAlert';
 import type { UseSequentialDebateReturn } from '@/hooks/useSequentialDebate';
 import type { DebateMessage } from '@/types/debate-thread';
 
@@ -62,9 +64,27 @@ export function DebateThreadView({ debate }: DebateThreadViewProps) {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [allMessages.length, context.isStreaming]);
 
+  // Handler for dismissing contradictions
+  const handleDismissContradiction = (contradictionId: string) => {
+    debate.send({ type: 'DISMISS_CONTRADICTION', contradictionId });
+  };
+
+  // Handler for requesting clarification (placeholder)
+  const handleRequestClarification = (contradictionId: string) => {
+    console.log('[DebateThreadView] Request clarification for:', contradictionId);
+    // TODO: Implement clarification request logic
+  };
+
   return (
     <ScrollArea className="h-full">
       <div className="min-h-full flex flex-col">
+        {/* Health Score Indicator - shown when debate is active */}
+        {context.config && context.healthScore && (
+          <div className="sticky top-0 z-10 bg-background/95 backdrop-blur p-3 border-b">
+            <HealthScoreIndicator healthScore={context.healthScore} />
+          </div>
+        )}
+
         {/* Empty State */}
         {allMessages.length === 0 && (
           <div className="flex-1 flex items-center justify-center text-center p-4">
@@ -76,9 +96,29 @@ export function DebateThreadView({ debate }: DebateThreadViewProps) {
         )}
 
         {/* Messages - flush together with borders for separation */}
-        {allMessages.map((message) => (
-          <DebateMessageBubble key={message.id} message={message} />
-        ))}
+        {allMessages.map((message) => {
+          // Find contradictions for this message
+          const messageContradictions = context.contradictions?.filter(
+            (c) => c.statement1.messageId === message.id || c.statement2.messageId === message.id
+          ) || [];
+
+          return (
+            <div key={message.id}>
+              {/* Show contradiction alerts above the message if it's involved in any */}
+              {messageContradictions.map((contradiction) => (
+                <ContradictionAlert
+                  key={contradiction.id}
+                  contradiction={contradiction}
+                  onDismiss={handleDismissContradiction}
+                  onRequestClarification={handleRequestClarification}
+                  className="mx-4 mt-2"
+                />
+              ))}
+
+              <DebateMessageBubble message={message} />
+            </div>
+          );
+        })}
 
         {/* Typing Indicator - shown when agent is responding */}
         {context.isStreaming && context.config && (

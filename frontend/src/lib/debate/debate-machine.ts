@@ -70,6 +70,31 @@ export interface DebateMachineContext {
   totalCost: number;
   totalTokens: Record<string, number>;
 
+  // Quality tracking
+  healthScore: {
+    score: number;
+    trend?: 'improving' | 'stable' | 'declining';
+    lastUpdate?: string;
+    recommendation?: string;
+  };
+  contradictions: Array<{
+    id: string;
+    severity: 'high' | 'medium' | 'low';
+    statement1: {
+      participantName: string;
+      content: string;
+      messageId: string;
+    };
+    statement2: {
+      participantName: string;
+      content: string;
+      messageId: string;
+    };
+    similarityScore?: number;
+    timestamp: string;
+  }>;
+  loopDetected: boolean;
+
   // Errors
   error: string | null;
 }
@@ -89,7 +114,18 @@ export type DebateMachineEvent =
   | { type: 'ROUND_COMPLETE'; roundNumber: number }
   | { type: 'COST_UPDATE'; costData: CostData }
   | { type: 'ERROR'; error: string }
-  | { type: 'DEBATE_COMPLETE' };
+  | { type: 'DEBATE_COMPLETE' }
+  | { type: 'HEALTH_SCORE_UPDATE'; score: number; trend?: 'improving' | 'stable' | 'declining'; recommendation?: string }
+  | { type: 'CONTRADICTION_DETECTED'; contradiction: {
+      id: string;
+      severity: 'high' | 'medium' | 'low';
+      statement1: { participantName: string; content: string; messageId: string };
+      statement2: { participantName: string; content: string; messageId: string };
+      similarityScore?: number;
+      timestamp: string;
+    }}
+  | { type: 'LOOP_DETECTED'; patternLength: number; repetitions: number }
+  | { type: 'DISMISS_CONTRADICTION'; contradictionId: string };
 
 // ===== Guards =====
 
@@ -149,6 +185,13 @@ export const debateMachine = setup({
       rounds: () => [],
       totalCost: () => 0,
       totalTokens: () => ({}),
+      healthScore: () => ({
+        score: 100,
+        trend: 'stable' as const,
+        lastUpdate: new Date().toISOString(),
+      }),
+      contradictions: () => [],
+      loopDetected: () => false,
       error: () => null,
     }),
     startStreaming: assign({
@@ -182,10 +225,20 @@ export const debateMachine = setup({
         };
       }
 
+      // Check if this participant already has a response in this round (prevent duplicates)
+      const existingResponseIndex = currentRoundObj.responses.findIndex(
+        (r: ParticipantResponse) => r.participant_index === response.participant_index
+      );
+
+      // Only add if not already present
+      const updatedResponses = existingResponseIndex >= 0
+        ? currentRoundObj.responses // Don't add duplicate
+        : [...currentRoundObj.responses, response]; // Add new response
+
       // Add response to round
       const updatedRound = {
         ...currentRoundObj,
-        responses: [...currentRoundObj.responses, response],
+        responses: updatedResponses,
       };
 
       // Update rounds array
@@ -241,6 +294,35 @@ export const debateMachine = setup({
     clearError: assign({
       error: () => null,
     }),
+    updateHealthScore: assign(({ context, event }: any) => {
+      if (event.type !== 'HEALTH_SCORE_UPDATE') return context;
+
+      return {
+        healthScore: {
+          score: event.score,
+          trend: event.trend,
+          lastUpdate: new Date().toISOString(),
+          recommendation: event.recommendation,
+        },
+      };
+    }),
+    addContradiction: assign(({ context, event }: any) => {
+      if (event.type !== 'CONTRADICTION_DETECTED') return context;
+
+      return {
+        contradictions: [...context.contradictions, event.contradiction],
+      };
+    }),
+    dismissContradiction: assign(({ context, event }: any) => {
+      if (event.type !== 'DISMISS_CONTRADICTION') return context;
+
+      return {
+        contradictions: context.contradictions.filter((c: any) => c.id !== event.contradictionId),
+      };
+    }),
+    setLoopDetected: assign({
+      loopDetected: () => true,
+    }),
   },
 }).createMachine({
   id: 'debate',
@@ -256,6 +338,13 @@ export const debateMachine = setup({
     rounds: [],
     totalCost: 0,
     totalTokens: {},
+    healthScore: {
+      score: 100,
+      trend: 'stable' as const,
+      lastUpdate: new Date().toISOString(),
+    },
+    contradictions: [],
+    loopDetected: false,
     error: null,
   },
   states: {
@@ -298,6 +387,18 @@ export const debateMachine = setup({
         },
         COST_UPDATE: {
           actions: 'updateCosts',
+        },
+        HEALTH_SCORE_UPDATE: {
+          actions: 'updateHealthScore',
+        },
+        CONTRADICTION_DETECTED: {
+          actions: 'addContradiction',
+        },
+        LOOP_DETECTED: {
+          actions: 'setLoopDetected',
+        },
+        DISMISS_CONTRADICTION: {
+          actions: 'dismissContradiction',
         },
         PAUSE: {
           target: 'paused',
