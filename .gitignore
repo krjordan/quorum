@@ -65,6 +65,12 @@ temp/
 *.egg-info/
 dist/
 build/
+*.tsbuildinfo
+
+# Test output files
+docker/development/*.txt
+docker/development/*.json
+docker/development/*.sh
 
 # Claude Flow / Hive Mind
 .claude/settings.local.json
