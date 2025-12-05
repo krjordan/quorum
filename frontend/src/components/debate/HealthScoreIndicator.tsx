@@ -5,7 +5,6 @@
 'use client';
 
 import { useMemo } from 'react';
-import { Progress } from '@/components/ui/progress';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { cn } from '@/lib/utils';
 import { TrendingUp, TrendingDown, Minus, AlertTriangle } from 'lucide-react';

@@ -12,6 +12,7 @@ import { Progress } from '@/components/ui/progress';
 import { StatSection } from './StatSection';
 import { RoundIndicator } from './RoundIndicator';
 import { ParticipantCard } from './ParticipantCard';
+import { HealthScoreIndicator } from './HealthScoreIndicator';
 import type { UseSequentialDebateReturn } from '@/hooks/useSequentialDebate';
 import { Pause, Play, Square, FileText } from 'lucide-react';
 
@@ -68,6 +69,13 @@ function DebateStatsSidebarComponent({ debate, onOpenSummary }: DebateStatsSideb
       {/* Scrollable Stats */}
       <ScrollArea className="flex-1">
         <div className="p-4 space-y-6">
+          {/* Health Score Section */}
+          {context.healthScore && (
+            <div className="mb-4">
+              <HealthScoreIndicator healthScore={context.healthScore} />
+            </div>
+          )}
+
           {/* Progress Section */}
           {context.config && (
             <StatSection title="Progress">
@@ -210,6 +218,8 @@ export const DebateStatsSidebar = memo(DebateStatsSidebarComponent, (prevProps, 
     prev.context.currentTurn === next.context.currentTurn &&
     prev.context.totalCost === next.context.totalCost &&
     JSON.stringify(prev.context.totalTokens) === JSON.stringify(next.context.totalTokens) &&
+    prev.context.healthScore?.score === next.context.healthScore?.score &&
+    prev.context.healthScore?.trend === next.context.healthScore?.trend &&
     prev.context.rounds.length === next.context.rounds.length &&
     prev.isRunning === next.isRunning &&
     prev.isPaused === next.isPaused &&

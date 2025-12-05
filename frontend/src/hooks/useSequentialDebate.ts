@@ -181,6 +181,38 @@ export function useSequentialDebate() {
             });
             break;
 
+          case 'quality_update':
+            // Handle quality monitoring events from backend
+            console.log('[SSE] Quality update received:', turnEvent.data);
+
+            if (turnEvent.data.quality_type === 'health_score') {
+              send({
+                type: 'HEALTH_SCORE_UPDATE',
+                score: turnEvent.data.score,
+                trend: turnEvent.data.trend,
+                recommendation: turnEvent.data.recommendation,
+              });
+            } else if (turnEvent.data.quality_type === 'contradiction') {
+              send({
+                type: 'CONTRADICTION_DETECTED',
+                contradiction: {
+                  id: turnEvent.data.id || `contradiction_${Date.now()}`,
+                  severity: turnEvent.data.severity || 'medium',
+                  statement1: turnEvent.data.statement1,
+                  statement2: turnEvent.data.statement2,
+                  similarityScore: turnEvent.data.similarity_score,
+                  timestamp: turnEvent.timestamp,
+                },
+              });
+            } else if (turnEvent.data.quality_type === 'loop_detected') {
+              send({
+                type: 'LOOP_DETECTED',
+                patternLength: turnEvent.data.pattern_length || 0,
+                repetitions: turnEvent.data.repetitions || 0,
+              });
+            }
+            break;
+
           case 'error':
             send({
               type: 'ERROR',

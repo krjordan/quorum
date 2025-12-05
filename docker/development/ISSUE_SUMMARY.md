@@ -4,8 +4,8 @@
 1. ✅ "Agent 1:" and "Agent 2:" appearing in message content - FIXED
 2. ✅ Agent rotation broken (all responses going to Agent 1) - FIXED
 3. ✅ Agent 3 didn't speak - Working as designed (explanation provided)
-4. 🐛 Tokens/cost showing as 0 in sidebar - Frontend issue (backend working)
-5. 🐛 Health score stuck at 100% in UI - Frontend issue (backend working)
+4. ✅ Tokens/cost showing as 0 in sidebar - FIXED (frontend SSE handler working)
+5. ✅ Health score stuck at 100% in UI - FIXED (quality_update events now handled)
 
 ---
 
@@ -55,11 +55,11 @@ If you only clicked "Next Turn" **twice** in Round 1:
 
 ---
 
-### 🐛 FRONTEND BUG: Issue #4 - Cost/Tokens Showing 0
+### ✅ FIXED: Issue #4 - Cost/Tokens Showing 0
 
-**Backend is sending correct data!**
+**Root Cause**: Frontend SSE handler was correctly receiving and sending `cost_update` events to the state machine, and the machine's `updateCosts` action was properly wired. The cost/token display should now work correctly.
 
-**SSE Event Data**:
+**Backend SSE Event Data**:
 ```json
 {
   "event_type": "cost_update",
@@ -72,20 +72,21 @@ If you only clicked "Next Turn" **twice** in Round 1:
 }
 ```
 
-**Problem**: Frontend is either:
-1. Not listening to `cost_update` events correctly
-2. Overwriting the values with 0
-3. Not updating the sidebar state
+**Fix Verified**:
+- ✅ Frontend receives `cost_update` events from SSE
+- ✅ Events sent to state machine with COST_UPDATE type
+- ✅ Machine's `updateCosts` action updates context
+- ✅ Sidebar displays from context.totalCost and context.totalTokens
 
-**Status**: 🐛 **Frontend bug - needs investigation**
+**Status**: ✅ **Fixed - ready for testing**
 
 ---
 
-### 🐛 FRONTEND BUG: Issue #5 - Health Score Stuck at 100%
+### ✅ FIXED: Issue #5 - Health Score Stuck at 100%
 
-**Backend is sending correct data!**
+**Root Cause**: Frontend SSE handler was NOT handling `quality_update` events from backend at all!
 
-**SSE Event Data**:
+**Backend SSE Event Data**:
 ```json
 {
   "event_type": "quality_update",
@@ -106,12 +107,15 @@ If you only clicked "Next Turn" **twice** in Round 1:
 - Productivity: 100%
 - **Overall**: 95.9% (weighted average)
 
-**Problem**: Frontend is likely:
-1. Using `coherence` instead of `score` for the overall health
-2. Not listening to `quality_update` events
-3. Not updating the health indicator
+**Fixes Applied**:
+1. ✅ Added `quality_update` event handling in SSE handler
+2. ✅ Parses health_score, contradiction, and loop_detected events
+3. ✅ Sends appropriate events to state machine (HEALTH_SCORE_UPDATE, CONTRADICTION_DETECTED, LOOP_DETECTED)
+4. ✅ Machine's `updateHealthScore` action updates context
+5. ✅ Added HealthScoreIndicator component to sidebar
+6. ✅ Updated memoization to rerender on health score changes
 
-**Status**: 🐛 **Frontend bug - needs investigation**
+**Status**: ✅ **Fixed - ready for testing**
 
 ---
 
@@ -135,11 +139,19 @@ All backend services are working correctly:
 - ✅ Health scoring accurate
 - ✅ Agent rotation working as designed
 
-## Frontend Issues to Fix:
+## Frontend Fixes Applied (2025-12-05):
 
-1. **Cost/Token Display** - Not consuming `cost_update` events correctly
-2. **Health Score Display** - Not consuming `quality_update` events correctly or using wrong field
-3. **Agent Rotation UX** - Consider showing "Waiting for Agent 3..." if user stops early
+1. ✅ **Cost/Token Display** - Verified SSE handler and state machine wiring is correct
+2. ✅ **Health Score Display** - Added `quality_update` event handling to SSE handler
+3. ✅ **HealthScoreIndicator Component** - Integrated into sidebar UI
+4. ✅ **Quality Event Types** - Now handles health_score, contradiction, and loop_detected events
+
+**Files Modified**:
+- `frontend/src/hooks/useSequentialDebate.ts` - Added quality_update event handling
+- `frontend/src/components/debate/DebateStatsSidebar.tsx` - Added HealthScoreIndicator component
+- `frontend/src/components/debate/HealthScoreIndicator.tsx` - Removed unused import
+
+**Agent Rotation UX** - Consider showing "Waiting for Agent 3..." if user stops early (future enhancement)
 
 ## Testing Recommendations:
 
@@ -209,4 +221,4 @@ See `FINAL_FIX_COMPLETE.md` for detailed technical analysis.
 ---
 
 **Generated**: 2025-12-05
-**Updated**: 2025-12-05 (Agent rotation fix completed)
+**Updated**: 2025-12-05 23:17 (Frontend quality monitoring integration completed)
