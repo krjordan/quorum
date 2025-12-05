@@ -391,21 +391,24 @@ class SequentialDebateService:
         # (prevents stale object reference issues)
         current_round = debate.rounds[current_round_num - 1]
 
-        # Emit participant_complete event
+        # ===== EMIT COST UPDATE BEFORE PARTICIPANT_COMPLETE =====
+        # CRITICAL: Emit cost and quality events BEFORE participant_complete
+        # because frontend closes SSE connection when it receives that event
         yield SequentialTurnEvent(
-            event_type=SequentialTurnEventType.PARTICIPANT_COMPLETE,
+            event_type=SequentialTurnEventType.COST_UPDATE,
             debate_id=debate_id,
             round_number=current_round_num,
             turn_index=current_turn_index,
             data={
-                "participant_name": participant.name,
-                "tokens_used": total_tokens,
-                "cost": cost,
-                "response_time_ms": response_time_ms
+                "total_cost": debate.total_cost,
+                "round_cost": current_round.cost_estimate,
+                "total_tokens": debate.total_tokens,
+                "warning_threshold": debate.config.cost_warning_threshold
             }
         )
 
         # ===== CONVERSATION QUALITY INTEGRATION =====
+        # CRITICAL: Must happen BEFORE participant_complete event
         logger.info(f"[QUALITY] Starting quality integration for debate {debate_id}, participant {participant.name}")
         try:
             async with get_async_session() as db:
@@ -589,32 +592,23 @@ class SequentialDebateService:
         except Exception as e:
             # Log but don't fail the debate if quality checks fail
             logger.error(f"Error in quality integration: {str(e)}")
-            # Optionally emit an error event
-            yield SequentialTurnEvent(
-                event_type=SequentialTurnEventType.ERROR,
-                debate_id=debate_id,
-                round_number=current_round_num,
-                turn_index=current_turn_index,
-                data={
-                    "error": f"Quality check error: {str(e)}",
-                    "non_critical": True
-                }
-            )
-        # ===== END QUALITY INTEGRATION =====
 
-        # Emit cost update
+        # ===== EMIT PARTICIPANT_COMPLETE AFTER ALL QUALITY CHECKS =====
+        # Now that cost and quality events have been emitted, send participant_complete
+        # Frontend will close connection after receiving this event
         yield SequentialTurnEvent(
-            event_type=SequentialTurnEventType.COST_UPDATE,
+            event_type=SequentialTurnEventType.PARTICIPANT_COMPLETE,
             debate_id=debate_id,
             round_number=current_round_num,
             turn_index=current_turn_index,
             data={
-                "total_cost": debate.total_cost,
-                "round_cost": current_round.cost_estimate,
-                "total_tokens": debate.total_tokens,
-                "warning_threshold": debate.config.cost_warning_threshold
+                "participant_name": participant.name,
+                "tokens_used": total_tokens,
+                "cost": cost,
+                "response_time_ms": response_time_ms
             }
         )
+        # ===== END QUALITY INTEGRATION =====
 
         # Check if round is complete (turn was already advanced earlier)
         if debate.current_turn == 0 and debate.current_round > current_round_num:

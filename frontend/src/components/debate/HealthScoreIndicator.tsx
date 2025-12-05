@@ -110,7 +110,7 @@ export function HealthScoreIndicator({ healthScore, className }: HealthScoreIndi
               </svg>
               {/* Score text */}
               <div className="absolute inset-0 flex items-center justify-center">
-                <span className={cn('text-lg font-bold', textColor)}>{score}</span>
+                <span className={cn('text-lg font-bold', textColor)}>{Math.round(score)}</span>
               </div>
             </div>
 

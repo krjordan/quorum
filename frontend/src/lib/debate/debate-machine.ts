@@ -277,11 +277,22 @@ export const debateMachine = setup({
     updateCosts: assign(({ context, event }: any) => {
       if (event.type !== 'COST_UPDATE') return context;
 
-      const { total_cost, total_tokens } = event.costData;
+      const { total_cost, round_cost, total_tokens } = event.costData;
+
+      // Update the current round's cost estimate
+      const updatedRounds = [...context.rounds];
+      const currentRoundIndex = context.currentRound - 1;
+      if (updatedRounds[currentRoundIndex]) {
+        updatedRounds[currentRoundIndex] = {
+          ...updatedRounds[currentRoundIndex],
+          cost_estimate: round_cost,
+        };
+      }
 
       return {
         totalCost: total_cost,
         totalTokens: total_tokens,
+        rounds: updatedRounds,
       };
     }),
     setError: assign({

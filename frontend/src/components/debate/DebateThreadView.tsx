@@ -8,7 +8,6 @@ import { useEffect, useRef, useMemo } from 'react';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { DebateMessageBubble } from './DebateMessageBubble';
 import { TypingIndicator } from './TypingIndicator';
-import { HealthScoreIndicator } from './HealthScoreIndicator';
 import { ContradictionAlert } from './ContradictionAlert';
 import type { UseSequentialDebateReturn } from '@/hooks/useSequentialDebate';
 import type { DebateMessage } from '@/types/debate-thread';
@@ -78,13 +77,6 @@ export function DebateThreadView({ debate }: DebateThreadViewProps) {
   return (
     <ScrollArea className="h-full">
       <div className="min-h-full flex flex-col">
-        {/* Health Score Indicator - shown when debate is active */}
-        {context.config && context.healthScore && (
-          <div className="sticky top-0 z-10 bg-background/95 backdrop-blur p-3 border-b">
-            <HealthScoreIndicator healthScore={context.healthScore} />
-          </div>
-        )}
-
         {/* Empty State */}
         {allMessages.length === 0 && (
           <div className="flex-1 flex items-center justify-center text-center p-4">
